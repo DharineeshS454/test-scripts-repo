@@ -1,16 +1,8 @@
 """
-Dummy demo script for the 'login' feature.
-Simulates running whichever test cases were checked in the UI, with a
-randomized pass/fail per case -- purely for demoing the Run flow end to
-end. Replace with real automation (Selenium/Playwright/API calls) once
-CellSens/Preciv are actually available to test against.
-
-Contract with app.py:
-- Reads the list of selected test case names from the SELECTED_TEST_CASES
-  env var (JSON array of strings).
-- Prints one line starting with "RESULT_JSON:" followed by a JSON object
-  with per-case results, so the UI can show pass/fail per checkbox.
-- Exits 0 if every selected case passed, 1 if any failed.
+Dummy demo script -- simulates running whichever test cases were checked
+in the UI, with a randomized pass/fail per case. Purely for demoing the
+Run flow end to end. Replace with real automation once the app is
+actually available to test against.
 """
 import json
 import os
@@ -32,8 +24,8 @@ results = []
 all_passed = True
 
 for case_name in selected_cases:
-    time.sleep(0.3)  # simulate the case actually doing something
-    passed = random.random() > 0.3  # ~70% pass rate, feels realistic
+    time.sleep(0.3)
+    passed = random.random() > 0.3  # ~70% pass rate
     status = "pass" if passed else "fail"
     detail = "Completed successfully." if passed else "Assertion failed: unexpected result."
     print(f"[{status.upper()}] {case_name} - {detail}")
